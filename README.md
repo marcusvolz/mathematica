@@ -13,32 +13,31 @@ SeedRandom[865];
 n = 40000;
 m = 50;
 s = 0.001;
-c = {3.3, 0.9, -0.8, -5.4, 5.3, -5.6, 3.7, 7.6, 5.0, 
-   0.9, -6.1, -6.1};
+c = {3.3, 0.9, -0.8, -5.4, 5.3, -5.6, 3.7, 7.6, 5.0, 0.9, -6.1, -6.1};
 p = {6, 2, 3, 2, 3, 6};
 
 nextPoint = Function[xy,
-   dx = c[[1]]  *(Sin[c[[2]]*xy[[1]]])^(p[[1]]) +
-          c[[3]]  *(Sin[c[[4]]*xy[[2]]])^(p[[2]]) +
-          c[[5]]  *(Cos[c[[6]]*xy[[2]]])^(p[[3]]);
+ dx = c[[1]]*(Sin[c[[2]]*xy[[1]]])^(p[[1]]) +
+      c[[3]]*(Sin[c[[4]]*xy[[2]]])^(p[[2]]) +
+      c[[5]]*(Cos[c[[6]]*xy[[2]]])^(p[[3]]);
+ 
+ dy = c[[7]]*(Sin[c[[8]]*xy[[2]]])^(p[[4]]) +
+      c[[9]]*(Sin[c[[10]]*xy[[1]]])^(p[[5]]) +
+      c[[11]]*(Cos[c[[12]]*xy[[1]]])^(p[[6]]);
+ 
+ d = Sqrt[dx^2 + dy^2];
    
-   dy = c[[7]]*(Sin[c[[8]]*xy[[2]]])^(p[[4]]) +
-          c[[9]]*(Sin[c[[10]]*xy[[1]]])^(p[[5]]) +
-          c[[11]]*(Cos[c[[12]]*xy[[1]]])^(p[[6]]);
-   
-   d = Sqrt[dx^2 + dy^2];
-   
-   xy + {dx, dy}*s/d
-   ];
+ xy + {dx, dy}*s/d
+];
 
 points = Table[
-   NestList[
-    nextPoint[#] &,
-    RandomReal[{-0.5, 0.5}, 2],
-    m
-    ],
-   n
-   ];
+ NestList[
+  nextPoint[#] &,
+  RandomReal[{-0.5, 0.5}, 2],
+  m
+ ],
+ n
+];
 
 ListLinePlot[
  points,
@@ -47,7 +46,7 @@ ListLinePlot[
  ImageSize -> {800, 800},
  PlotStyle -> Directive[{Black, Thickness[0.00015]}],
  PlotRange -> {{-0.55, 0.55}, {-0.55, 0.55}}
- ]
+]
 ```
 
 ## Weiszfeld's Algorithm
