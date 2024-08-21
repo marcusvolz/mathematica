@@ -2,11 +2,55 @@
 
 Artistic visualizations created with Mathematica and the Wolfram Language
 
+## Vector Flow Field 003
+
+Trajectories of particles moving across a vector flow field, starting from 10,000 points on the perimeter of the unit circle.
+
+
+!["Vector Flow Field 003](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-003.png "Vector Flow Field 003")
+
+```mathematica
+n = 10000;
+m = 50;
+s = 0.025;
+c = {4.5, -1.2, 5.4, 9.1, -7.1, -0.9};
+
+nextPoint = Function[xy,
+ dx = c[[1]]*xy[[1]] + c[[2]]*Tan[c[[3]]*xy[[2]]];
+ dy = c[[4]]*xy[[2]] + c[[5]]*Tan[c[[6]]*xy[[1]]];
+ 
+ d = Sqrt[dx^2 + dy^2];
+ 
+ xy + {dx, dy}*s/d
+];
+
+points = Table[
+ NestList[
+  nextPoint[#] &,
+  {Cos[i/n*2*Pi], Sin[i/n*2*Pi]},
+  m
+ ],
+ {i, 1, n}
+];
+
+ymax = Max[points];
+
+ListLinePlot[
+ points,
+ AspectRatio -> 1,
+ Axes -> False,
+ ImagePadding -> 5,
+ ImageSize -> {800, 800},
+ PlotRange -> {{-ymax, ymax}, {-ymax, ymax}},
+ PlotStyle -> Directive[{Black, Thickness[0.00006]}]
+]
+```
+
 ## Vector Flow Field 002
 
 Trajectories of particles moving across a vector flow field.
 
-![facets](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-002.png "Vector Flow Field 002")
+![Vector Flow Field 002](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-002.png "Vector Flow Field 002")
 
 ```mathematica
 SeedRandom[865];
@@ -45,7 +89,7 @@ ListLinePlot[
 
 Trajectories of particles moving across a vector flow field defined by equations with coefficients c and powers p.
 
-![facets](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field.png "Vector Flow Field")
+![Vector Flow Field](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field.png "Vector Flow Field")
 
 ```mathematica
 SeedRandom[865];
@@ -92,7 +136,7 @@ ListLinePlot[
 
 Iterative paths converging to the geometric median of 20 terminals using [Weiszfeld's algorithm](https://en.wikipedia.org/wiki/Geometric_median), starting from 10,000 random initial locations.
 
-![facets](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/weiszfeld.png "Weiszfeld's Algorithm")
+![Weiszfeld's Algorithm](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/weiszfeld.png "Weiszfeld's Algorithm")
 
 ```mathematica
 SeedRandom[938463];
