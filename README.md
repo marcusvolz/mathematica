@@ -2,10 +2,48 @@
 
 Artistic visualizations created with Mathematica and the Wolfram Language
 
+## Vector Flow Field 004
+
+Trajectories of particles moving across a vector flow field.
+
+!["Vector Flow Field 004](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-004.png "Vector Flow Field 004")
+
+```mathematica
+n = 10000;
+m = 200;
+s = 0.005;
+
+nextPoint = Function[xy,
+ dx = -Cos[10*xy[[2]]^2]^3;
+ dy = -Sin[10*xy[[1]]^2*xy[[2]]]^3;
+ 
+ d = Sqrt[dx^2 + dy^2];
+
+ xy + {dx, dy}*s/d
+];
+
+points = Table[
+ NestList[
+  nextPoint[#] &,
+  RandomReal[{-4, 4}, 2],
+  m
+ ],
+ n
+];
+
+ListLinePlot[
+ points,
+ AspectRatio -> 1,
+ Axes -> False,
+ ImagePadding -> 5,
+ ImageSize -> {800, 800},
+ PlotStyle -> Directive[{Black, Thickness[0.00025]}]
+]
+```
+
 ## Vector Flow Field 003
 
 Trajectories of particles moving across a vector flow field, starting from 10,000 points on the perimeter of the unit circle.
-
 
 !["Vector Flow Field 003](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-003.png "Vector Flow Field 003")
 
