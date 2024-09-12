@@ -2,6 +2,38 @@
 
 Artistic visualizations created with Mathematica and the Wolfram Language
 
+## Vector Flow Field 006
+
+!["Vector Flow Field 006](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-006.png "Vector Flow Field 006")
+
+```mathematica
+n = 10000;
+m = 200;
+s = 0.17;
+a = -3.0;
+b = -0.3;
+
+nextPoint = Function[
+ xy,
+ dx = -(20 xy[[1]] + xy[[2]] + 60 Cos[a xy[[2]]]);
+ dy = -(-xy[[1]] + b  xy[[2]] - 60 Cos[a xy[[1]]]);
+ d = Sqrt[dx^2 + dy^2];
+ xy + {dx, dy}*s/d
+];
+
+points = Table[NestList[nextPoint[#] &, RandomReal[{-10, 10}, 2], m], n];
+
+ymax = Max[points];
+
+plot = ListLinePlot[
+ points, 
+ AspectRatio -> 1, Axes -> False, 
+ ImagePadding -> 25, ImageSize -> {800, 800}, 
+ PlotRange -> {{-ymax, ymax}, {-ymax, ymax}}, 
+ PlotStyle -> Directive[{Black, Thickness[0.00003]}]
+]
+```
+
 ## Vector Flow Field 005
 
 Trajectories of particles moving across a vector flow field.
