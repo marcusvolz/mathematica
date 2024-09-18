@@ -2,9 +2,37 @@
 
 Artistic visualizations created with Mathematica and the Wolfram Language
 
+## Epicycloid Nearest Neighbor Graph
+
+![Epicycloid Nearest Neighbor Graph](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/epicycloid-knn.png "Epicycloid Nearest Neighbor Graph")
+
+```mathematica
+a = 62;
+b = 90;
+k = 28;
+n = 1970;
+
+points = Table[
+ {(a + b) Cos[t] - b Cos[(a/b + 1) t], y = (a + b) Sin[t] - b Sin[(a/b + 1) t]},
+ {t, 0, 96 Pi, 96 Pi/n}
+];
+
+GraphPlot[
+ NearestNeighborGraph[
+  points,
+  k,
+  EdgeStyle -> Directive[Black, Thickness[0.0005]],
+  ImagePadding -> 25,
+  ImageSize -> {800, 800},
+  PerformanceGoal -> "Quality",
+  VertexStyle -> Transparent
+ ]
+]
+```
+
 ## Vector Flow Field 006
 
-!["Vector Flow Field 006](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-006.png "Vector Flow Field 006")
+![Vector Flow Field 006](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-006.png "Vector Flow Field 006")
 
 ```mathematica
 n = 10000;
@@ -38,7 +66,7 @@ plot = ListLinePlot[
 
 Trajectories of particles moving across a vector flow field.
 
-!["Vector Flow Field 005](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-005.png "Vector Flow Field 005")
+![Vector Flow Field 005](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-005.png "Vector Flow Field 005")
 
 ```mathematica
 n = 10000;
@@ -69,7 +97,7 @@ ListLinePlot[
 
 Trajectories of particles moving across a vector flow field.
 
-!["Vector Flow Field 004](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-004.png "Vector Flow Field 004")
+![Vector Flow Field 004](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-004.png "Vector Flow Field 004")
 
 ```mathematica
 n = 10000;
@@ -108,7 +136,7 @@ ListLinePlot[
 
 Trajectories of particles moving across a vector flow field, starting from 10,000 points on the perimeter of the unit circle.
 
-!["Vector Flow Field 003](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-003.png "Vector Flow Field 003")
+![Vector Flow Field 003](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-003.png "Vector Flow Field 003")
 
 ```mathematica
 n = 10000;
