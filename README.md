@@ -2,6 +2,38 @@
 
 Artistic visualizations created with Mathematica and the Wolfram Language
 
+## Rose Nearest Neighbor Graph
+
+![Rose Nearest Neighbor Graph](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/rose-knn.png "Rose Nearest Neighbor Graph")
+
+```mathematica
+Grid[
+ Partition[
+  Table[
+   Show[
+    GraphPlot[
+     NearestNeighborGraph[
+      Table[
+       {Cos[k*t]*Cos[t], Cos[k*t]*Sin[t]},
+       {t, 0, 12 Pi, Pi/180}
+      ],
+      30,
+      EdgeStyle -> Directive[Black, Thickness[0.0005]],
+      ImagePadding -> 0,
+      ImageSize -> {250, 250},
+      PerformanceGoal -> "Quality",
+      VertexStyle -> Transparent,
+      WorkingPrecision -> MachinePrecision
+     ]
+    ]
+   ],
+   {k, 3, 11}
+  ],
+  3
+ ]
+]
+```
+
 ## Epicycloid Nearest Neighbor Graph
 
 ![Epicycloid Nearest Neighbor Graph](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/epicycloid-knn.png "Epicycloid Nearest Neighbor Graph")
