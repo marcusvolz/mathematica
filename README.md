@@ -62,6 +62,46 @@ GraphPlot[
 ]
 ```
 
+## Vector Flow Field 007
+
+![Vector Flow Field 007](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-007.png "Vector Flow Field 007")
+
+```mathematica
+n = 10000;
+m = 50;
+s = 0.025;
+c = {7.0, -8.7, 9.8, 4.4, -9.4, 4.7};
+
+nextPoint = Function[xy,
+ x = xy[[1]];
+ y = xy[[2]];
+ dx = -2*(c[[1]] x + c[[2]] Sin[c[[3]] y]);
+ dy = -2*(c[[4]] y - c[[5]] Cos[c[[6]] x]);
+ 
+ d = Sqrt[dx^2 + dy^2];
+ 
+ xy + {dx, dy}*s/d
+];
+
+points = Table[
+ NestList[
+ nextPoint[#] &,
+ {Cos[i/n*2*Pi], Sin[i/n*2*Pi]},
+ m
+ ],
+ {i, 1, n}
+];
+
+ListLinePlot[
+ points,
+ AspectRatio -> 1,
+ Axes -> False,
+ ImagePadding -> 5,
+ ImageSize -> {800, 800},
+ PlotStyle -> Directive[{Black, Thickness[0.00003]}]
+]
+```
+
 ## Vector Flow Field 006
 
 ![Vector Flow Field 006](https://raw.githubusercontent.com/marcusvolz/mathematica/main/plots/vector-flow-field-006.png "Vector Flow Field 006")
